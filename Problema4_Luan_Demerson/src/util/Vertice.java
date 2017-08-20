@@ -11,13 +11,15 @@ import java.util.ArrayList;
  *
  * @author luanv
  */
-class Vertice {
+public class Vertice implements Comparable<Vertice> {
 	private Object info; // Object qualquer para ser armazenado alguma informação especial sobre o
-								// vértice.
+							// vértice.
 	private int x; // Coordenada do vértice no eixo X.
 	private int y;
 	private boolean visitado;
 	ArrayList<Aresta> adjacentes;
+	private float tamanhoCaminho;
+	private Vertice anterior;
 
 	public Vertice(Object info, int x, int y) {
 		super();
@@ -27,6 +29,7 @@ class Vertice {
 		this.visitado = false;
 		this.adjacentes = new ArrayList<Aresta>();
 	}
+
 	public Vertice(Object info) {
 		super();
 		this.info = info;
@@ -67,7 +70,7 @@ class Vertice {
 	public void setVisitado(boolean visitado) {
 		this.visitado = visitado;
 	}
-	
+
 	public void addAdjacente(Vertice adicionado, float peso) {
 		this.adjacentes.add(new Aresta(this, adicionado, peso));
 	}
@@ -75,10 +78,38 @@ class Vertice {
 	public ArrayList<Aresta> getAdjacentes() {
 		return adjacentes;
 	}
-	 
+
+	public int getNumArestas() {
+		return this.adjacentes.size();
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		return this.info.equals(((Vertice) obj).getInformacao());
 	}
 
+	public float getTamanhoCaminho() {
+		return tamanhoCaminho;
+	}
+
+	public void setTamanhoCaminho(float tamanhoCaminho) {
+		this.tamanhoCaminho = tamanhoCaminho;
+	}
+
+	public Vertice getAnterior() {
+		return anterior;
+	}
+
+	public void setAnterior(Vertice anterior) {
+		this.anterior = anterior;
+	}
+
+	@Override
+	public int compareTo(Vertice o) {
+		return (this.visitado && o.isVisitado()) ? 0 :
+			((this.visitado && !o.isVisitado()) ? -1 :
+				(!this.visitado && o.isVisitado()) ? 1 : (!this.visitado && !o.isVisitado()) ? 
+						((this.tamanhoCaminho < o.getTamanhoCaminho()) ? 1 : -1));
+	}
+	
 }

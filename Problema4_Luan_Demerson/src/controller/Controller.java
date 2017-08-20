@@ -8,8 +8,10 @@ package controller;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 import util.GrafoListaAdjacencia;
+import util.Vertice;
 
 /**
  *
@@ -19,6 +21,7 @@ public class Controller {
 
 	private final GrafoListaAdjacencia grafo;
 	private static Controller instancia;
+	private Object[] informations;
 
 	private Controller() {
 		this.grafo = new GrafoListaAdjacencia();
@@ -45,6 +48,19 @@ public class Controller {
 		}
 		arq.close();
 		lerArq.close();
+		this.salvarVertices();
 	}
-
+	
+	private void salvarVertices() {
+		this.informations = new Object[this.grafo.getNumVertice()];
+		int contador = 0;
+		for(Vertice v : this.grafo.getVertices()) {
+			this.informations[contador++] = v.getInformacao();
+		}
+		Arrays.sort(this.informations);
+	}
+	
+	public Object[] getInformacoes() {
+		return this.informations;
+	}
 }

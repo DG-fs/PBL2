@@ -25,14 +25,18 @@ public class GrafoListaAdjacencia {
 	public int getNumVertice() {
 		return this.vertices.size();
 	}
-
-	public void addVertex(Object stored) {
-		this.vertices.add(new Vertice(stored));
+	
+	public int getNumArestas() {
+		int cont = 0;
+		for(Vertice i : this.vertices) {
+			cont += i.getNumArestas();
+		}
+		return cont/2;
 	}
 
-	public int calcularTempoL(ArrayList<Vertice> d) {
-		int tempo = 0;
-		return tempo;
+	public void addVertex(Object stored) {
+		if(!this.vertices.contains(new Vertice(stored)))
+			this.vertices.add(new Vertice(stored));
 	}
 	
 	private Vertice getVertice(Object busca) {
@@ -47,8 +51,10 @@ public class GrafoListaAdjacencia {
 		if(this.vertices.contains(new Vertice(origem)) || this.vertices.contains(new Vertice(destino))) {
 			Vertice first = this.getVertice(origem);
 			Vertice second = this.getVertice(destino);
-			first.addAdjacente(second, peso);
-			second.addAdjacente(first, peso);
+			if(!(first == null || second == null)) {
+				first.addAdjacente(second, peso);
+				second.addAdjacente(first, peso);
+			}
 		}
 	}
 

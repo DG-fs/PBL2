@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -21,13 +22,13 @@ import controller.Controller;
 
 /**
  *
- * @author luanv
+ * @author Demerson Sampaio
  */
 public class Interface {
 	private JFrame tela;
 	private Container container;
 	private JButton btnProcurar;
-	private JComboBox<String> origem, destino, dia;
+	private JComboBox<Object> origem, destino, dia;
 	private JLabel txtOrigem, txtDestino;
 	private JPanel panelBaixo, panelCentro, panelLado;
 	private JTextArea txtArea;
@@ -46,14 +47,14 @@ public class Interface {
 
 		btnProcurar = new JButton("Procurar Menores Rotas");
 
-		origem = new JComboBox<String>();
-		origem.addItem("Selecione a Origem");
-		destino = new JComboBox<String>();
-		destino.addItem("Selecione o Destino");
+		origem = new JComboBox<Object>();
+		origem.setModel(new  DefaultComboBoxModel<Object>(Controller.getInstance().getInformacoes()));
+		destino = new JComboBox<Object>();
+		destino.setModel(new  DefaultComboBoxModel<Object>(Controller.getInstance().getInformacoes()));
 		txtOrigem = new JLabel("Origem: ");
 		txtDestino = new JLabel("Destino: ");
 
-		dia = new JComboBox<String>();
+		dia = new JComboBox<Object>();
 		dia.addItem("Selecione o Dia");
 
 		getTela().getContentPane().add(container);
