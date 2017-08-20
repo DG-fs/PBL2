@@ -6,6 +6,7 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  *
@@ -56,6 +57,15 @@ public class GrafoListaAdjacencia {
 				second.addAdjacente(first, peso);
 			}
 		}
+	}
+	
+	public Stack<Object> menorCaminho(Object origem, Object destino){
+		Vertice first = this.getVertice(origem);
+		Vertice second = this.getVertice(destino);
+		if((first == null || second == null))
+			return null;
+		Dijkstra d = new Dijkstra(this, first);
+		return d.menorCaminho(first, second);
 	}
 
 }

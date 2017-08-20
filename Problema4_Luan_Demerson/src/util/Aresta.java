@@ -17,16 +17,16 @@ public class Aresta {
 	public void setPeso(float peso) {
 		this.peso = peso;
 	}
-	public Vertice getV() {
+	public Vertice getOrigem() {
 		return v;
 	}
-	public void setV(Vertice v) {
+	public void setOrigem(Vertice v) {
 		this.v = v;
 	}
-	public Vertice getU() {
+	public Vertice getDestino() {
 		return u;
 	}
-	public void setU(Vertice u) {
+	public void setDestino(Vertice u) {
 		this.u = u;
 	}
 }
