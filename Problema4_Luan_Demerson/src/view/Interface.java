@@ -10,6 +10,7 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -76,6 +77,11 @@ public class Interface {
 		panelBaixo.add(btnProcurar);
 		panelLado.add(dia);
 		panelCentro.add(scrollpaneTopo);
+		JScrollPane p = new JScrollPane();
+		JLabel mapa = new JLabel();
+		mapa.setIcon(new ImageIcon("Mapa.png"));
+		p.setViewportView(mapa);
+		panelCentro.add(p);
 
 	}
 

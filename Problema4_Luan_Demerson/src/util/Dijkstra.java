@@ -32,7 +32,6 @@ public class Dijkstra {
 		}
 		Vertice ciclo = destino;
 		if(ciclo.getAnterior() != null) {
-			System.out.println(ciclo.getInformacao());
 			while(ciclo != null) {
 				retornaCaminho.push(ciclo.getInformacao());
 				ciclo = ciclo.getAnterior();

@@ -5,6 +5,7 @@ import java.util.Stack;
 import org.junit.Test;
 
 import junit.framework.TestCase;
+import util.GrafoListaAdjacencia;
 
 public class GrafoListaAdjacenciaTest extends TestCase {
 
@@ -56,7 +57,6 @@ public class GrafoListaAdjacenciaTest extends TestCase {
 		int count = 0;
 		assertFalse(test.isEmpty());
 		while (!test.isEmpty()) {
-			System.out.println(test.peek());
 			assertEquals(expected[count], test.pop());
 			count += 1;
 		}

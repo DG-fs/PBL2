@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import org.junit.Before;
 import org.junit.Test;
 
+import controller.Controller;
 import junit.framework.TestCase;
 
 public class ControllerTest extends TestCase {
