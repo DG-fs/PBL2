@@ -43,12 +43,12 @@ public class GrafoListaAdjacencia {
 		return null;
 	}
 
-	public void inserirAresta(Object origem, Object destino) {
+	public void inserirAresta(Object origem, Object destino, float peso) {
 		if(this.vertices.contains(new Vertice(origem)) || this.vertices.contains(new Vertice(destino))) {
 			Vertice first = this.getVertice(origem);
 			Vertice second = this.getVertice(destino);
-			first.addAdjacente(second);
-			second.addAdjacente(first);
+			first.addAdjacente(second, peso);
+			second.addAdjacente(first, peso);
 		}
 	}
 

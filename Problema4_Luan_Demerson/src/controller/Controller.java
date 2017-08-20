@@ -6,41 +6,47 @@
 package controller;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+
+import util.GrafoListaAdjacencia;
 
 /**
  *
  * @author luanv
  */
 public class Controller {
-	public ArrayList<Vertice> arquivo = new ArrayList<Vertice>();
 
-	public ArrayList<Vertice> ImportarArq() {
+	private final GrafoListaAdjacencia grafo;
+	private static Controller instancia;
+
+	private Controller() {
+		this.grafo = new GrafoListaAdjacencia();
+	}
+
+	public static Controller getInstance() {
+		if (instancia == null)
+			instancia = new Controller();
+		return instancia;
+	}
+
+	public void ImportarArq() {
 		try {
 			FileReader arq = new FileReader("MapaMetro.txt");
 			BufferedReader lerArq = new BufferedReader(arq);
 			String linha = lerArq.readLine();
 			while (linha != null) {
-
-				System.out.printf("%s\n", linha);
-				arquivo.inserirFinal(arq);
+				String[] informacoes = linha.split(",|,\\s");
+				this.grafo.addVertex(informacoes[0]);
+				this.grafo.addVertex(informacoes[1]);
+				this.grafo.inserirAresta(informacoes[0], informacoes[1], Float.parseFloat(informacoes[2]));
 				linha = lerArq.readLine(); // lê da segunda até a última linha
-
 			}
-
 			arq.close();
+			lerArq.close();
 		} catch (IOException e) {
 			System.err.printf("Erro na abertura do arquivo: %s.\n", e.getMessage());
 		}
-		return arquivo;
-	}
-
-	String[] importarArquivo(File file) {
-		throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose
-																		// Tools | Templates.
 	}
 
 }

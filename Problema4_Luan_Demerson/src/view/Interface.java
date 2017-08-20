@@ -29,7 +29,7 @@ public class Interface {
     private JScrollPane scrollpaneTopo;
     private Facade abrir;
     
-    Controller controller = new Controller();
+    Controller controller = Controller.getInstance();
     
     public Interface(){
         tela = new JFrame("Metrô");
@@ -43,7 +43,6 @@ public class Interface {
 
         origem = new JComboBox();
         origem.addItem("Selecione a Origem");
-        origem.addItem(controller.ImportarArq());
         destino = new JComboBox();
         destino.addItem("Selecione o Destino");
         txtOrigem = new JLabel("Origem: ");

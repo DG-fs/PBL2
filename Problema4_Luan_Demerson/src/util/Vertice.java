@@ -68,8 +68,8 @@ class Vertice {
 		this.visitado = visitado;
 	}
 	
-	public void addAdjacente(Vertice adicionado) {
-		this.adjacentes.add(new Aresta(this, adicionado, 0));
+	public void addAdjacente(Vertice adicionado, float peso) {
+		this.adjacentes.add(new Aresta(this, adicionado, peso));
 	}
 
 	public ArrayList<Aresta> getAdjacentes() {
