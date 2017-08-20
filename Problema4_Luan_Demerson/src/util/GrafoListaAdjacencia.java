@@ -9,70 +9,47 @@ import java.util.ArrayList;
 
 /**
  *
- * @author luanv
+ * @author Demerson Sampaio
  */
 public class GrafoListaAdjacencia {
 	private ArrayList<Vertice> vertices;
-	private int numVertice;
-	private int posicao;
 
-	public GrafoListaAdjacencia(Vertice u) {
-		
-		this.numVertice = 1;
-		posicao = 0;
+	public GrafoListaAdjacencia() {
+		this.vertices = new ArrayList<Vertice>();
 	}
 
 	public ArrayList<Vertice> getVertices() {
 		return vertices;
 	}
 
-	public int getNVertice() {
-		return numVertice;
-	}
-
 	public int getNumVertice() {
-		return this.numVertice;
+		return this.vertices.size();
 	}
 
-	public void addVertex(Vertice v) {
-			vertices.add(v);
-			posicao++;
-	}
-
-	public Comparable buscarVerticeInt(int index) {
-		return index;
-	}
-
-	public int buscarVerticeComp(Comparable c) {
-		return numVertice;
-	}
-
-	public double calcularTempoP(int a, int b) {
-		Vertice p1 = vertices[a]; // Encontra-se o primeiro ponto.
-		Vertice p2 = vertices[b]; // Encontra-se o segundo ponto.
-		return Math.sqrt(Math.pow(Math.abs(p1.getX() - p2.getX()), 2) + Math.pow(Math.abs(p1.getY() - p2.getY()), 2));
+	public void addVertex(Object stored) {
+		this.vertices.add(new Vertice(stored));
 	}
 
 	public int calcularTempoL(ArrayList<Vertice> d) {
 		int tempo = 0;
 		return tempo;
 	}
-
-	public void inserirAresta(Comparable origem, Comparable destino) {
+	
+	private Vertice getVertice(Object busca) {
+		for(Vertice achado : this.vertices) {
+			if(achado.getInformacao() == busca)
+				return achado;
+		}
+		return null;
 	}
 
-	public boolean existeAresta(int origem, int destino) {
-		return false;
+	public void inserirAresta(Object origem, Object destino) {
+		if(this.vertices.contains(new Vertice(origem)) || this.vertices.contains(new Vertice(destino))) {
+			Vertice first = this.getVertice(origem);
+			Vertice second = this.getVertice(destino);
+			first.addAdjacente(second);
+			second.addAdjacente(first);
+		}
 	}
 
-	public boolean removerAresta(int origem, int destino) {
-		return false;
-	}
-
-	public int buscarAdj(int vert) {
-		return vert;
-	}
-
-	public void imprimeMatriz() {
-	}
 }

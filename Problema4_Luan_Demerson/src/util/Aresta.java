@@ -5,7 +5,7 @@ public class Aresta {
 	private Vertice v;
 	private Vertice u;
 	
-	public Aresta(float peso, Vertice v, Vertice u) {
+	public Aresta(Vertice v, Vertice u, float peso) {
 		this.peso = peso;
 		this.v = v;
 		this.u = u;

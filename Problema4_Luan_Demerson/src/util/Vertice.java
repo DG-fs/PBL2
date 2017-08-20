@@ -17,8 +17,7 @@ class Vertice {
 	private int x; // Coordenada do vértice no eixo X.
 	private int y;
 	private boolean visitado;
-	ArrayList<Vertice> adjacentes;
-	
+	ArrayList<Aresta> adjacentes;
 
 	public Vertice(Object info, int x, int y) {
 		super();
@@ -26,7 +25,15 @@ class Vertice {
 		this.x = x;
 		this.y = y;
 		this.visitado = false;
-		this.adjacentes = new ArrayList<Vertice>();
+		this.adjacentes = new ArrayList<Aresta>();
+	}
+	public Vertice(Object info) {
+		super();
+		this.info = info;
+		this.x = 0;
+		this.y = 0;
+		this.visitado = false;
+		this.adjacentes = new ArrayList<Aresta>();
 	}
 
 	public Object getInformacao() {
@@ -60,13 +67,18 @@ class Vertice {
 	public void setVisitado(boolean visitado) {
 		this.visitado = visitado;
 	}
-
-	public ArrayList<Vertice> getAdjacentes() {
-		return adjacentes;
+	
+	public void addAdjacente(Vertice adicionado) {
+		this.adjacentes.add(new Aresta(this, adicionado, 0));
 	}
 
-	public void setAdjacentes(ArrayList<Vertice> adjacentes) {
-		this.adjacentes = adjacentes;
+	public ArrayList<Aresta> getAdjacentes() {
+		return adjacentes;
+	}
+	 
+	@Override
+	public boolean equals(Object obj) {
+		return this.info.equals(((Vertice) obj).getInformacao());
 	}
 
 }
