@@ -19,7 +19,7 @@ public class GrafoListaAdjacenciaTest extends TestCase {
 		littleGraph.addVertex("D");
 		littleGraph.addVertex("E");
 		littleGraph.addVertex("F");
-	
+
 		littleGraph.inserirAresta("A", "B", 3);
 		littleGraph.inserirAresta("A", "F", 5);
 		littleGraph.inserirAresta("B", "F", 1);
@@ -27,11 +27,11 @@ public class GrafoListaAdjacenciaTest extends TestCase {
 		littleGraph.inserirAresta("F", "E", 2);
 		littleGraph.inserirAresta("C", "E", 4);
 		littleGraph.inserirAresta("C", "D", 5);
-		
+
 		assertEquals(6, littleGraph.getNumVertice());
 		assertEquals(7, littleGraph.getNumArestas());
 	}
-	
+
 	@Test
 	public void testDjkstra() {
 		GrafoListaAdjacencia littleGraph = new GrafoListaAdjacencia();
@@ -42,7 +42,7 @@ public class GrafoListaAdjacenciaTest extends TestCase {
 		littleGraph.addVertex("D");
 		littleGraph.addVertex("E");
 		littleGraph.addVertex("F");
-	
+
 		littleGraph.inserirAresta("A", "B", 3);
 		littleGraph.inserirAresta("A", "F", 5);
 		littleGraph.inserirAresta("B", "F", 1);
@@ -50,9 +50,9 @@ public class GrafoListaAdjacenciaTest extends TestCase {
 		littleGraph.inserirAresta("F", "E", 2);
 		littleGraph.inserirAresta("C", "E", 4);
 		littleGraph.inserirAresta("C", "D", 5);
-		
+
 		Stack<Object> test = littleGraph.menorCaminho("A", "D");
-		
+
 		String[] expected = { "A", "B", "F", "C", "D" };
 		int count = 0;
 		assertFalse(test.isEmpty());
@@ -60,5 +60,6 @@ public class GrafoListaAdjacenciaTest extends TestCase {
 			assertEquals(expected[count], test.pop());
 			count += 1;
 		}
+		assertEquals(5, count);
 	}
 }

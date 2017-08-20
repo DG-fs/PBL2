@@ -106,11 +106,13 @@ public class Vertice implements Comparable<Vertice> {
 
 	@Override
 	public int compareTo(Vertice o) {
-		/*return (this.visitado && o.isVisitado()) ? 0 :
-			((this.visitado && !o.isVisitado()) ? -1 :
-				(!this.visitado && o.isVisitado()) ? 1 : (!this.visitado && !o.isVisitado()) ? 
-						((this.tamanhoCaminho < o.getTamanhoCaminho()) ? 1 : -1));*/
+		/*
+		 * return (this.visitado && o.isVisitado()) ? 0 : ((this.visitado &&
+		 * !o.isVisitado()) ? -1 : (!this.visitado && o.isVisitado()) ? 1 :
+		 * (!this.visitado && !o.isVisitado()) ? ((this.tamanhoCaminho <
+		 * o.getTamanhoCaminho()) ? 1 : -1));
+		 */
 		return this.tamanhoCaminho > o.tamanhoCaminho ? 1 : this.tamanhoCaminho < o.tamanhoCaminho ? -1 : 0;
 	}
-	
+
 }

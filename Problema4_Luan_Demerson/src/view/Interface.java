@@ -8,9 +8,11 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Stack;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -42,16 +44,28 @@ public class Interface {
 		getTela().setTitle("Metr\u00F4");
 		container = new JPanel(new BorderLayout());
 		panelBaixo = new JPanel(new FlowLayout());
-		panelCentro = new JPanel(new BorderLayout());
+		panelCentro = new DesenhaMapa(new BorderLayout());
 		panelLado = new JPanel(new FlowLayout());
 		scrollpaneTopo = new JScrollPane();
 
 		btnProcurar = new JButton("Procurar Menores Rotas");
+		btnProcurar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Stack<Object> s = Controller.getInstance().menorCaminho(origem.getSelectedItem(),
+						destino.getSelectedItem());
+				while (!s.isEmpty()) {
+					System.out.println(s.pop());
+				}
+				panelCentro.repaint();
+			}
+		});
 
 		origem = new JComboBox<Object>();
-		origem.setModel(new  DefaultComboBoxModel<Object>(Controller.getInstance().getInformacoes()));
+		origem.setModel(new DefaultComboBoxModel<Object>(Controller.getInstance().getInformacoes()));
 		destino = new JComboBox<Object>();
-		destino.setModel(new  DefaultComboBoxModel<Object>(Controller.getInstance().getInformacoes()));
+		destino.setModel(new DefaultComboBoxModel<Object>(Controller.getInstance().getInformacoes()));
 		txtOrigem = new JLabel("Origem: ");
 		txtDestino = new JLabel("Destino: ");
 
@@ -77,11 +91,11 @@ public class Interface {
 		panelBaixo.add(btnProcurar);
 		panelLado.add(dia);
 		panelCentro.add(scrollpaneTopo);
-		JScrollPane p = new JScrollPane();
-		JLabel mapa = new JLabel();
-		mapa.setIcon(new ImageIcon("Mapa.png"));
-		p.setViewportView(mapa);
-		panelCentro.add(p);
+		/*
+		 * JScrollPane p = new JScrollPane(); JLabel mapa = new JLabel();
+		 * mapa.setIcon(new ImageIcon("Mapa.png")); p.setViewportView(mapa);
+		 * panelCentro.add(p);
+		 */
 
 	}
 

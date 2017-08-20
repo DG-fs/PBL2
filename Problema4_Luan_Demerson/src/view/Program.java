@@ -13,6 +13,7 @@ public class Program {
 	public static void main(String[] args) {
 		try {
 			Controller.getInstance().ImportarArq();
+			Controller.getInstance().lerPontos();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} finally {
