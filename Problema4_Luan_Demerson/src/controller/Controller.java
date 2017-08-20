@@ -30,23 +30,21 @@ public class Controller {
 		return instancia;
 	}
 
-	public void ImportarArq() {
-		try {
-			FileReader arq = new FileReader("MapaMetro.txt");
-			BufferedReader lerArq = new BufferedReader(arq);
-			String linha = lerArq.readLine();
-			while (linha != null) {
+	public void ImportarArq() throws IOException {
+		FileReader arq = new FileReader("MapaMetro.txt");
+		BufferedReader lerArq = new BufferedReader(arq);
+		String linha = lerArq.readLine();
+		while (linha != null) {
+			if(linha.charAt(0) != '#') {
 				String[] informacoes = linha.split(",|,\\s");
 				this.grafo.addVertex(informacoes[0]);
 				this.grafo.addVertex(informacoes[1]);
 				this.grafo.inserirAresta(informacoes[0], informacoes[1], Float.parseFloat(informacoes[2]));
-				linha = lerArq.readLine(); // lê da segunda até a última linha
 			}
-			arq.close();
-			lerArq.close();
-		} catch (IOException e) {
-			System.err.printf("Erro na abertura do arquivo: %s.\n", e.getMessage());
+			linha = lerArq.readLine(); // lê da segunda até a última linha
 		}
+		arq.close();
+		lerArq.close();
 	}
 
 }

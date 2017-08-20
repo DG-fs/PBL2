@@ -11,9 +11,5 @@ public class GrafoListaAdjacenciaTest extends TestCase {
 		GrafoListaAdjacencia graph = new GrafoListaAdjacencia();
 		Vertice u = new Vertice ("b", 2, 2);
 		
-		graph.addVertex(u);
-		graph.addEdge(1,v,u);
-		
-		assertEquals();
 	}
 }
