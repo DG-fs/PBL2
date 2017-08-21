@@ -20,8 +20,8 @@ public class Dijkstra {
 
 	public Stack<Object> menorCaminho(Vertice origem, Vertice destino) {
 		Stack<Object> retornaCaminho = new Stack<Object>();
-		while (!this.proximosVertices.isEmpty()) {
-			Vertice found = this.proximosVertices.poll();
+		while (!proximosVertices.isEmpty()) {
+			Vertice found = proximosVertices.poll();
 			if (!found.isVisitado()) {
 				for (Aresta adjacente : found.getAdjacentes()) {
 					if (adjacente.getDestino().getTamanhoCaminho() > found.getTamanhoCaminho() + adjacente.getPeso()) {
@@ -35,7 +35,7 @@ public class Dijkstra {
 		Vertice ciclo = destino;
 		if (ciclo.getAnterior() != null) {
 			while (ciclo != null) {
-				retornaCaminho.push(ciclo.getInformacao());
+				retornaCaminho.push(ciclo.getInfo());
 				ciclo = ciclo.getAnterior();
 			}
 		}

@@ -17,12 +17,11 @@ public class Vertice implements Comparable<Vertice> {
 	private int x; // Coordenada do vértice no eixo X.
 	private int y;
 	private boolean visitado;
-	ArrayList<Aresta> adjacentes;
+	private ArrayList<Aresta> adjacentes;
 	private float tamanhoCaminho;
 	private Vertice anterior;
 
 	public Vertice(Object info, int x, int y) {
-		super();
 		this.info = info;
 		this.x = x;
 		this.y = y;
@@ -39,12 +38,12 @@ public class Vertice implements Comparable<Vertice> {
 		this.adjacentes = new ArrayList<Aresta>();
 	}
 
-	public Object getInformacao() {
+	public Object getInfo() {
 		return info;
 	}
 
-	public void setInformacao(Object informacao) {
-		this.info = informacao;
+	public void setInfo(Object info) {
+		this.info = info;
 	}
 
 	public int getX() {
@@ -85,7 +84,7 @@ public class Vertice implements Comparable<Vertice> {
 
 	@Override
 	public boolean equals(Object obj) {
-		return this.info.equals(((Vertice) obj).getInformacao());
+		return this.info.equals(((Vertice) obj).getInfo());
 	}
 
 	public float getTamanhoCaminho() {
@@ -106,12 +105,6 @@ public class Vertice implements Comparable<Vertice> {
 
 	@Override
 	public int compareTo(Vertice o) {
-		/*
-		 * return (this.visitado && o.isVisitado()) ? 0 : ((this.visitado &&
-		 * !o.isVisitado()) ? -1 : (!this.visitado && o.isVisitado()) ? 1 :
-		 * (!this.visitado && !o.isVisitado()) ? ((this.tamanhoCaminho <
-		 * o.getTamanhoCaminho()) ? 1 : -1));
-		 */
 		return this.tamanhoCaminho > o.tamanhoCaminho ? 1 : this.tamanhoCaminho < o.tamanhoCaminho ? -1 : 0;
 	}
 

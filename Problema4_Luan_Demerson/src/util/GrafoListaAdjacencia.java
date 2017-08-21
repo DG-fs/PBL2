@@ -16,7 +16,7 @@ public class GrafoListaAdjacencia {
 	private ArrayList<Vertice> vertices;
 
 	public GrafoListaAdjacencia() {
-		this.vertices = new ArrayList<Vertice>();
+		vertices = new ArrayList<Vertice>();
 	}
 
 	public ArrayList<Vertice> getVertices() {
@@ -36,22 +36,22 @@ public class GrafoListaAdjacencia {
 	}
 
 	public void addVertex(Object stored) {
-		if (!this.vertices.contains(new Vertice(stored)))
-			this.vertices.add(new Vertice(stored));
+		if (!vertices.contains(new Vertice(stored)))
+			vertices.add(new Vertice(stored));
 	}
 
 	private Vertice getVertice(Object busca) {
-		for (Vertice achado : this.vertices) {
-			if (achado.getInformacao().equals(busca))
+		for (Vertice achado : vertices) {
+			if (achado.getInfo().equals(busca))
 				return achado;
 		}
 		return null;
 	}
 
 	public void inserirAresta(Object origem, Object destino, float peso) {
-		if (this.vertices.contains(new Vertice(origem)) || this.vertices.contains(new Vertice(destino))) {
-			Vertice first = this.getVertice(origem);
-			Vertice second = this.getVertice(destino);
+		if (vertices.contains(new Vertice(origem)) || vertices.contains(new Vertice(destino))) {
+			Vertice first = getVertice(origem);
+			Vertice second = getVertice(destino);
 			if (!(first == null || second == null)) {
 				first.addAdjacente(second, peso);
 				second.addAdjacente(first, peso);
@@ -60,8 +60,8 @@ public class GrafoListaAdjacencia {
 	}
 
 	public Stack<Object> menorCaminho(Object origem, Object destino) {
-		Vertice first = this.getVertice(origem);
-		Vertice second = this.getVertice(destino);
+		Vertice first = getVertice(origem);
+		Vertice second = getVertice(destino);
 		if ((first == null || second == null))
 			return null;
 		Dijkstra d = new Dijkstra(this, first);

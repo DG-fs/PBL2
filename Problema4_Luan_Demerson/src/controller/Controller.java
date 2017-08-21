@@ -25,7 +25,7 @@ public class Controller {
 
 	private final GrafoListaAdjacencia grafo;
 	private static Controller instancia;
-	private Object[] informations;
+	private Object[] info;
 
 	private Controller() {
 		this.grafo = new GrafoListaAdjacencia();
@@ -38,65 +38,59 @@ public class Controller {
 	}
 
 	public void ImportarArq() throws IOException {
-		FileReader arq = new FileReader("MapaMetro.txt");
-		BufferedReader lerArq = new BufferedReader(arq);
+		BufferedReader lerArq = new BufferedReader(new FileReader("MapaMetro.txt"));
 		String linha = lerArq.readLine();
 		while (linha != null) {
 			if (linha.charAt(0) != '#') {
 				String[] informacoes = linha.split(",|,\\s");
-				this.grafo.addVertex(informacoes[0]);
-				this.grafo.addVertex(informacoes[1]);
-				this.grafo.inserirAresta(informacoes[0], informacoes[1], Float.parseFloat(informacoes[2]));
+				grafo.addVertex(informacoes[0]);
+				grafo.addVertex(informacoes[1]);
+				grafo.inserirAresta(informacoes[0], informacoes[1], Float.parseFloat(informacoes[2]));
 			}
 			linha = lerArq.readLine(); // lê da segunda até a última linha
 		}
-		arq.close();
 		lerArq.close();
 		this.salvarVertices();
 	}
 
 	public void lerPontos() throws IOException {
-		FileReader arq = new FileReader("Coordenadas.txt");
-		BufferedReader lerArq = new BufferedReader(arq);
+		BufferedReader lerArq = new BufferedReader(new FileReader("Coordenadas.txt"));
 		String linha = lerArq.readLine();
 		HashMap<String, Point> pontos = new HashMap<String, Point>();
 		while (linha != null) {
 			if (linha.charAt(0) != '#') {
 				String[] informacoes = linha.split(",|,\\s");
-				pontos.put(informacoes[0],
-						new Point(Integer.parseInt(informacoes[1]), Integer.parseInt(informacoes[2])));
+				pontos.put(informacoes[0], new Point(Integer.parseInt(informacoes[1]), Integer.parseInt(informacoes[2])));				
 			}
 			linha = lerArq.readLine(); // lê da segunda até a última linha
 		}
-		for (Vertice v : this.grafo.getVertices()) {
-			if (pontos.get(v.getInformacao()) != null) {
-				// System.out.println(pontos.get(v.getInformacao()));
-				v.setX(pontos.get(v.getInformacao()).x);
-				v.setY(pontos.get(v.getInformacao()).y);
+		for (Vertice v : grafo.getVertices()) {
+			if (pontos.get(v.getInfo()) != null) {
+				v.setX(pontos.get(v.getInfo()).x);
+				v.setY(pontos.get(v.getInfo()).y);
 			}
-		}
-		arq.close();
+		}	
 		lerArq.close();
 	}
 
 	private void salvarVertices() {
-		this.informations = new Object[this.grafo.getNumVertice()];
+		info = new Object[grafo.getNumVertice()];
 		int contador = 0;
-		for (Vertice v : this.grafo.getVertices()) {
-			this.informations[contador++] = v.getInformacao();
+		for (Vertice v : grafo.getVertices()) {
+			info[contador++] = v.getInfo();
 		}
-		Arrays.sort(this.informations);
+		Arrays.sort(info);
 	}
 
 	public Object[] getInformacoes() {
-		return this.informations;
+		return info;
 	}
 
 	public ArrayList<Vertice> getVertices() {
-		return this.grafo.getVertices();
+		return grafo.getVertices();
 	}
 
 	public Stack<Object> menorCaminho(Object origem, Object destino) {
-		return this.grafo.menorCaminho(origem, destino);
+		return grafo.menorCaminho(origem, destino);
 	}
 }
