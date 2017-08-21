@@ -42,7 +42,7 @@ public class GrafoListaAdjacencia {
 
 	private Vertice getVertice(Object busca) {
 		for (Vertice achado : this.vertices) {
-			if (achado.getInformacao() == busca)
+			if (achado.getInformacao().equals(busca))
 				return achado;
 		}
 		return null;

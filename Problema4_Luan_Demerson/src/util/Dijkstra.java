@@ -11,7 +11,8 @@ public class Dijkstra {
 		for (Vertice v : grafo.getVertices()) {
 			v.setTamanhoCaminho(Float.MAX_VALUE);
 			v.setAnterior(null);
-			if (v == origem)
+			v.setVisitado(false);
+			if (v.equals(origem))
 				v.setTamanhoCaminho(0);
 			this.proximosVertices.add(v);
 		}
@@ -28,6 +29,7 @@ public class Dijkstra {
 						adjacente.getDestino().setAnterior(found);
 					}
 				}
+				found.setVisitado(true);
 			}
 		}
 		Vertice ciclo = destino;
