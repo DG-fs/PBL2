@@ -47,10 +47,10 @@ public class Controller {
 				grafo.addVertex(informacoes[1]);
 				grafo.inserirAresta(informacoes[0], informacoes[1], Float.parseFloat(informacoes[2]));
 			}
-			linha = lerArq.readLine(); // lê da segunda até a última linha
+			linha = lerArq.readLine();
 		}
 		lerArq.close();
-		this.salvarVertices();
+		salvarVertices();
 	}
 
 	public void lerPontos() throws IOException {

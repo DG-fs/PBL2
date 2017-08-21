@@ -71,7 +71,7 @@ public class Vertice implements Comparable<Vertice> {
 	}
 
 	public void addAdjacente(Vertice adicionado, float peso) {
-		this.adjacentes.add(new Aresta(this, adicionado, peso));
+		adjacentes.add(new Aresta(this, adicionado, peso));
 	}
 
 	public ArrayList<Aresta> getAdjacentes() {

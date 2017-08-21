@@ -2,7 +2,11 @@ package util;
 
 import java.util.PriorityQueue;
 import java.util.Stack;
-
+/**
+ * 
+ * 
+ * @author Demerson Sampaio
+ */
 public class Dijkstra {
 	private PriorityQueue<Vertice> proximosVertices;
 
